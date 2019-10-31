@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.vladlin.rfid_android_mifare">
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <application
+        android:name="ru.vladlin.rfid_android_mifare.Common"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.MainMenu"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity-alias
+            android:targetActivity="ru.vladlin.rfid_android_mifare.MainMenu"
+            android:name=".MainMenuAlias"
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTop" >
+            <!-- NFC Tech Filter -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+        </activity-alias>
+
+        <!-- Content Providers -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            android:authorities="${applicationId}.fileprovider">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths"/>
+
+        </provider>
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.KeyMapCreator"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/map_keys_to_sector"
+            android:label="@string/title_activity_create_key_map" >
+        </activity>
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.DumpEditor"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/edit_dump"
+            android:label="@string/title_activity_dump_editor" >
+        </activity>
+
+
+
+
+
+        <!-- STOP -->
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.ReadTag"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/read_tag"
+            android:label="@string/title_activity_read_tag" >
+        </activity>
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.TagInfoTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/ic_settings_input_antenna_black_24dp"
+            android:label="@string/title_activity_tag_info" >
+        </activity>
+
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.ValueBlockTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/value_block_tool"
+            android:label="@string/title_activity_value_block_tool" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.AccessConditionTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/access_condition_tool"
+            android:label="@string/title_activity_access_condition_tool" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.HelpAndInfo"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/help_and_info"
+            android:label="@string/title_activity_help" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.DiffTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/find"
+            android:label="@string/title_activity_diff_tool" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.Preferences"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:label="@string/title_activity_preferences" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.FileChooser"
+            android:icon="@drawable/ic_lock_open_black_24dp"
+            android:label="@string/title_activity_file_chooser" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.WriteTag"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/write"
+            android:label="@string/title_activity_write_tag" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.AccessConditionDecoder"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/access_conditions"
+            android:label="@string/title_activity_access_conditions" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.BccTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/bcc_tool"
+            android:label="@string/title_activity_bcc_tool" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.CloneUidTool"
+            android:configChanges="orientation|screenSize"
+            android:icon="@drawable/copy"
+            android:label="@string/title_activity_clone_uid" >
+        </activity>
+        <activity
+            android:name="ru.vladlin.rfid_android_mifare.KeyEditor"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/edit_keys"
+            android:label="@string/title_activity_key_editor" >
+        </activity>
+    </application>
+
+</manifest>
